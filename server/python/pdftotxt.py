@@ -1,4 +1,7 @@
 import aspose.words as aw
 
-doc = aw.Document(r"../server/public/files/testres.pdf")
-doc.save("../server/public/files/Output.txt")
+
+def ptt():
+    doc = aw.Document(r"../server/public/files/testres.pdf")
+    doc.save("../server/public/files/Output.txt")
+    return doc

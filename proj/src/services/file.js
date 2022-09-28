@@ -10,3 +10,10 @@ export const uploadFile = async (form) => {
       },
     });
   };
+
+  export const speak = async () => {
+    return await axios({
+      method: "GET",
+      url: `/api/v1/upload/bot`,
+    });
+  };

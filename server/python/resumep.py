@@ -8,7 +8,7 @@ from spacy.training.example import Example
 
 
 nlp = spacy.load('en_core_web_sm')
-print(nlp.pipe_names)
+# print(nlp.pipe_names)
 train = [
     ("Worked on an interactive game using UE4 that aims to teach financial literacy to individuals",
      {"entities": [(36, 39, "Skills and Technologies"), (13, 29, "Projects")]}),
@@ -52,20 +52,21 @@ with nlp.disable_pipes(*disable_pipes):
 
         # Update the model
         nlp.update(example, drop=0.5, losses=losses)
-        print(losses)
+        # print(losses)
 
 for text, _ in train:
     doc = nlp(text)
-    print("Entities", [(ent.text, ent.label_) for ent in doc.ents])
+    # print("Entities", [(ent.text, ent.label_) for ent in doc.ents])
 
 
 def rp(txt):
     list = []
     doc = nlp(txt)
     for ent in doc.ents:
-        print(ent.text, ent.start_char, ent.end_char, ent.label_)
+        # print(ent.text, ent.start_char, ent.end_char, ent.label_)
         t = ent.text
         list.append(t)
 
         # displacy.render(nlp(doc.text), style='ent', jupyter=True)
-    print(list)
+    # print(list)
+    return list
