@@ -18,3 +18,7 @@
 .starRecord:hover {
   background-color: #dbb62d;
 }
+
+.flex{
+  display: flex;
+}

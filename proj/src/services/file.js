@@ -16,6 +16,7 @@ export const uploadFile = async (form) => {
     return await axios({
       method: "GET",
       url: `/api/v1/upload/bot`,
+    })}
 
   export const uploadVideo = async (form) => {
     return await axios({

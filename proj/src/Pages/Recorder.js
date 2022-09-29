@@ -1,8 +1,10 @@
 import React from "react";
 import { useEffect, useState } from "react";
 import { uploadVideo } from "../services/file";
+import bot from "../Images/bot.mp4"
 const formData = require("form-data");
 var FileSaver = require("file-saver");
+
 
 const Recorder = () => {
   let form = new formData();
@@ -66,7 +68,7 @@ const Recorder = () => {
     .getUserMedia(constraintObj)
     .then(function (mediaStreamObj) {
       //connect the media stream to the first video element
-      let video = document.querySelector("video");
+      let video = document.getElementById("videop");
       if ("srcObject" in video) {
         video.srcObject = mediaStreamObj;
       } else {
@@ -141,14 +143,9 @@ const Recorder = () => {
 
   return (
     <>
+    
       <div>
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Impedit
-          molestiae itaque facere totam saepe tempore esse temporibus, quae
-          reprehenderit aliquid iusto ea laborum, iure eligendi odio
-          exercitationem sapiente illum quos.
-        </p>
-
+       
         <p>
           <button id="btnStart">START RECORDING</button>
           <br />
@@ -163,7 +160,8 @@ const Recorder = () => {
         </p>
 
         {/* {videos} */}
-        <video controls></video>
+     
+        <video id="videop" controls></video>
         <video id="vid2" controls></video>
         <video id="vid3" controls></video>
         <video id="vid4" controls></video>
