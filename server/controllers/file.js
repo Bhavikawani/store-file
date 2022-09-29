@@ -3,6 +3,7 @@ const fs = require("fs");
 const nodecallspython = require("node-calls-python");
 let py = nodecallspython.interpreter;
 
+
 module.exports.uploadFile = async (req, res, next) => {
   if (req.file) {
     py.import(path.join(__dirname, "../python/pdftotxt.py")).then(
@@ -53,3 +54,9 @@ module.exports.speak = async (req, res, next) => {
     }
   );
 }
+
+
+module.exports.uploadVideo = async (req, res,next) => {
+    console.log(req.file,"mil gayi")
+ };
+
