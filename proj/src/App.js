@@ -7,9 +7,7 @@ function App() {
   return (
     <>
     <div>
-    {/* <File /> */}
-    {/* <VideoRecorder /> */}
-    <Recorder />
+    <File />
     </div>
    
     </>

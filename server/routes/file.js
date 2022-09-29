@@ -5,11 +5,14 @@ const { upload, setLocation } = require("../middlewares/file");
 const { videoUpload, location} = require("../middlewares/video");
 
 router.post(
-    "/",
-    setLocation("./public/files/"),
-    upload.single("file"),
-    file.uploadFile
-  );
+  "/",
+  setLocation("./public/files/"),
+  upload.single("file"),
+  file.uploadFile
+);
+
+router.get("/bot", file.speak);
+
 
   router.post(
     "/video",
@@ -19,3 +22,4 @@ router.post(
   );
 
 module.exports = router;
+
