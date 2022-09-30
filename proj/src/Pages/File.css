@@ -1,0 +1,23 @@
+.start{
+    float:right
+}
+
+.recorded{
+    margin-top: 110px;
+}
+video{
+    height: 600;
+    width: 600px;
+}
+
+#videop{
+margin-top: 150px;
+}
+
+#btnStart{
+    margin-right: 50px;
+}
+
+.input{
+    color: azure;
+}

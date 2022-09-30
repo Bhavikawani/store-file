@@ -1,10 +1,10 @@
 import React from "react";
 import { useEffect, useState } from "react";
 import { uploadVideo } from "../services/file";
-import bot from "../Images/bot.mp4"
+import bot from "../Images/bot.mp4";
+import './File.css';
 const formData = require("form-data");
 var FileSaver = require("file-saver");
-
 
 const Recorder = () => {
   let form = new formData();
@@ -27,8 +27,8 @@ const Recorder = () => {
     audio: false,
     video: {
       facingMode: "user",
-      width: { min: 640, ideal: 1280, max: 1920 },
-      height: { min: 480, ideal: 720, max: 1080 },
+      width: { min: 500, ideal: 500, max: 500 },
+      height: { min: 300, ideal: 300, max: 300 },
     },
   };
   // width: 1280, height: 720  -- preference only
@@ -87,12 +87,11 @@ const Recorder = () => {
       //   let vidSave = document.getElementById(`vid${id}`);
       let vidSave = document.getElementById("vid2");
       let vidSavee = document.getElementById("vid3");
-      let vidSaveee = document.getElementById("vid4");
-      let vidSaveeee = document.getElementById("vid5");
-    //   let vidSaves = [];
-    //   for (let i = 0; i <= 3; i++){
-    //     vidSaves[i] = document.getElementById(`vid${id}`);
-    //   }
+
+      //   let vidSaves = [];
+      //   for (let i = 0; i <= 3; i++){
+      //     vidSaves[i] = document.getElementById(`vid${id}`);
+      //   }
 
       let mediaRecorder = new MediaRecorder(mediaStreamObj);
       let chunks = [];
@@ -112,60 +111,55 @@ const Recorder = () => {
       mediaRecorder.onstop = (ev) => {
         let blob = new Blob(chunks, { type: "video/mp4;" });
         let videoURL = window.URL.createObjectURL(blob);
-    
-        // for (let i = 0; i <= 3; i++){
-            // vidSaves[i].src = videoURL;
-        // }
-      if(id==0){
-        vidSave.src = videoURL
-      }else if(id==1){
-        vidSavee.src = videoURL
-      }else if(id==2){
-        vidSaveee.src = videoURL
-      }else if(id==3){
-        vidSaveeee.src = videoURL
-      }
 
+        // for (let i = 0; i <= 3; i++){
+        // vidSaves[i].src = videoURL;
+        // }
+        if (id == 0) {
+          vidSave.src = videoURL;
+        } else if (id == 1) {
+          vidSavee.src = videoURL;
       };
+    }
     })
     .catch(function (err) {
       console.log(err.name, err.message);
     });
 
-//   const videos = [];
-//   for (let i = 0; i <= 3; i++) {
-//     videos.push(
-//       <>
-//         <video id={`vid${id}`} controls></video>
-//       </>
-//     );
-//   }
+  //   const videos = [];
+  //   for (let i = 0; i <= 3; i++) {
+  //     videos.push(
+  //       <>
+  //         <video id={`vid${id}`} controls></video>
+  //       </>
+  //     );
+  //   }
 
   return (
     <>
-    
       <div>
-       
+
+        {/* {videos} */}
+
+        <video style={{border: "1px solid black"}} id="videop" ></video>
         <p>
-          <button id="btnStart">START RECORDING</button>
-          <br />
+          <button class="button-30" id="btnStart">
+            Start
+          </button>
+      
           <button
+            class="button-30"
             id="btnStop"
             onClick={() => {
               setId(id + 1);
             }}
           >
-            STOP RECORDING
+            Stop
           </button>
         </p>
+        <br></br>
+        <video className="recorded" id="vid2" controls></video>
 
-        {/* {videos} */}
-     
-        <video id="videop" controls></video>
-        <video id="vid2" controls></video>
-        <video id="vid3" controls></video>
-        <video id="vid4" controls></video>
-        <video id="vid5" controls></video>
       </div>
     </>
   );

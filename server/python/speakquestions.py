@@ -1,78 +1,66 @@
-# from transformers import AutoTokenizer, AutoModelForSequenceClassification
-# import torch
-# import cv2
+from tabnanny import check
+
 import time
 import pyttsx3
-# from deepface import DeepFace
 
+import random as rand
 
-# Getting the sentiment score from the user sentences
-
-
-# def sentiment(text):
-#   ##Tokenizes according to bert neural network
-#   tokenizer = AutoTokenizer.from_pretrained('nlptown/bert-base-multilingual-uncased-sentiment')
-#   ##Instantiates the pretrained model as one of the sequence classification
-#   model = AutoModelForSequenceClassification.from_pretrained('nlptown/bert-base-multilingual-uncased-sentiment')
-#   tokens = tokenizer.encode('I did not have a bad day',  return_tensors='pt')
-#   result = int(torch.argmax(model(tokens).logits)+1)
-#   return result
-
-# ##Converting images to Frame
-
-# def videotoframe(path):
-#   cam = cv2.VideoCapture(path)
-#   fps = int(cam.get(cv2.CAP_PROP_FPS))
-
-
-#   current_frame, count = 0,0
-#   save_interval = 5
-
-#   while (cam.isOpened()):
-#     ret, frame = cam.read()
-#     if ret:
-#       current_frame += 1
-#       if current_frame % (fps*save_interval) == 0:
-#         name = f'./database/frame{str(current_frame)}.jpg'
-#         ## The second box is the timestamp of the frame which we will be storing in the database to pinpoint the timing around which user had to improve
-#         print(f"Creating {name} and the timestamp is {round(cam.get(cv2.CAP_PROP_POS_MSEC)/1000)}")
-#         #print(f"Creating {name} and the timestamp is {round(cam.get(cv2.CAP_PROP_POS_MSEC)/1000)}")
-#         #frame = cv2.rotate(frame, cv2.ROTATE_180)
-#         cv2.imwrite(name, frame)
-#         count += 1
-#     else:
-#       break
-#   ## Closes the video file
-#   cam.release()
-
-# ##Getting the emotion from the user
-
-
-# def emotion(imgpath):
-#   ## Using deepface model to analyze the emotions of the frames
-#     obj = DeepFace.analyze(img_path = imgpath, actions = ['emotion'])
-#   ## Returning only the dominant emotion and not all the emotions detected
-#     return obj['dominant_emotion']
 
 def speak(audio):
-  # Initializing the pyttsx3 engine
+    # Initializing the pyttsx3 engine
+    expire = ['It is past the time for answering', 'The time for answering the question has expired',
+              'Time has run out for answering the question', 'It is too late to answer the question', 'There is no more time to answer the question']
+    engine = pyttsx3.init()
+    voices = engine.getProperty('voices')
+    engine.setProperty('rate', 140)
+    engine.setProperty('voice', voices[1].id)
+    engine.say("Hello candidate welcome to the mock interview")
+    engine.say("Hope you do well")
+    engine.say('First we will begin with the soft skills round')
+    engine.say('Please introduce yourself')
+    for i in range(len(audio)):
+        engine.say(audio[i])
+        engine.runAndWait()
+        time.sleep(10)
+        engine.say(expire[rand.randint(0, len(expire)-1)])
+        engine.runAndWait()
+    return audio
+
+
+def skills_question(data):
+    technical_round()
+    engine = pyttsx3.init()
+    voices = engine.getProperty('voices')
+    engine.setProperty('rate', 140)
+    engine.setProperty('voice', voices[1].id)
+    questions = {
+        'NLP': {0: 'What do you understand by Natural Language Processing?', 1: 'What are stop words?', 2: 'What is NLTK?', 3: 'What is Syntactic Analysis?'},
+        'MySQL': {0: 'Define database.', 1: 'What is DBMS and RDBMS? Explain the difference between them.', 2: 'What is normalization and its types?', 3: 'What are Joins in SQL?'},
+        'PostgreSQL': {0: 'Define database.', 1: 'What is DBMS and RDBMS? Explain the difference between them.', 2: 'What is normalization and its types?', 3: 'What are Joins in SQL?'},
+        'Java': {0: 'What do you understand by Java?', 1: 'Differentiate between JDK, JRE, and JVM.', 2: 'Explain method overloading.', 3: 'Explain the creation of a thread-safe singleton in Java using double-checked locking.'}
+    }
+
+    for i in range(len(data)):
+        checker = data[i] in questions
+        print(checker)
+        if checker == True:
+
+            engine.say(f'Now you will be asked questions about {data[i]}')
+            for j in range(4):
+                # print(questions[data[i]][j])
+                engine.say(questions[data[i]][j])
+                engine.runAndWait()
+                time.sleep(10)
+        else:
+            continue
+    return data
+
+
+def technical_round():
     engine = pyttsx3.init()
     voices = engine.getProperty('voices')
     engine.setProperty('rate', 140)
     engine.setProperty('voice', voices[2].id)
-    time.sleep(5)
-    engine.say("Hello candidate welcome to the interview")
-    engine.say("Congratulations on being selected for this job interview")
-    for i in range(len(audio)):
-        if i == len(audio):
-            engine.say(audio[i])
-            engine.runAndWait()
-        else:
-            engine.say(audio[i])
-            engine.runAndWait()
-            time.sleep(30)
-            engine.say('The time for answering the question has expired')
-            engine.runAndWait()
-
-
-# speak(questions)
+    engine.say('Now you need to answer some technical questions orally')
+    engine.say('Let us begin now')
+    engine.runAndWait()

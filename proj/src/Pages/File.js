@@ -1,6 +1,7 @@
 import React from "react";
 import { uploadFile, speak } from "../services/file";
 import { useEffect, useState } from "react";
+import './File.css';
 const formData = require("form-data");
 
 const File = () => {
@@ -22,7 +23,7 @@ const File = () => {
         console.log(err);
       });
   };
-  
+
   const speakk = () => {
     speak()
       .then((result) => {
@@ -35,9 +36,16 @@ const File = () => {
 
   return (
     <>
-      <input type="file" onChange={(e) => handleChange(e)}></input>
-      <button onClick={upload}>Upload</button>
-      <button onClick={speakk}>BOT</button>
+   
+      <input type="file" className="input" onChange={(e) => handleChange(e)}></input>
+   
+      <button class="button-30" onClick={upload}>
+        Upload Resume
+      </button>
+   
+      <button class="button-30 start" onClick={speakk}>
+        Start Interview
+      </button>
     </>
   );
 };

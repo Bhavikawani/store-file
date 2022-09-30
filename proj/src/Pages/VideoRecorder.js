@@ -3,17 +3,17 @@ import { ReactMediaRecorder } from "react-media-recorder";
 import Webcam from "react-webcam";
 import FlipCameraIosIcon from "@material-ui/icons/FlipCameraIos";
 import "../App.css";
-import vid from "../Images/vid.mp4"
-import ReactPlayer from 'react-player'
+import vid from "../Images/vid.mp4";
+import ReactPlayer from "react-player";
 
 const FACING_MODE_USER = "user";
 const FACING_MODE_ENVIRONMENT = "environment";
 const videoConstraints = {
-  facingMode: FACING_MODE_USER
+  facingMode: FACING_MODE_USER,
 };
 
 function VideoRecorder() {
-  const [off, setOff] =useState(false);
+  const [off, setOff] = useState(false);
   const webcamRef = useRef(null);
   const [showData, setShowData] = useState(false);
 
@@ -64,7 +64,7 @@ function VideoRecorder() {
           stopRecording,
           mediaBlobUrl,
           pauseRecording,
-          resumeRecording
+          resumeRecording,
         }) => (
           <div>
             <p>{status}</p>
@@ -78,7 +78,7 @@ function VideoRecorder() {
                   // videoConstraints={{ deviceId: deviceId }}
                   videoConstraints={{
                     ...videoConstraints,
-                    facingMode
+                    facingMode,
                   }}
                 />
               )}
@@ -86,13 +86,12 @@ function VideoRecorder() {
               {/* {device.deviceId} */}
             </div>
             {/* ))} */}
-        
-            {showData  ? (
+
+            {showData ? (
               <video src={mediaBlobUrl} autoPlay controls loop />
-              
             ) : null}
             {console.log(mediaBlobUrl)}
-   
+
             <div className="p-1 m-1">
               <FlipCameraIosIcon
                 onClick={() => {
@@ -135,7 +134,7 @@ function VideoRecorder() {
           </div>
         )}
       />
-    {/* <ReactPlayer
+      {/* <ReactPlayer
   url={vid}
   config={{
     youtube: {

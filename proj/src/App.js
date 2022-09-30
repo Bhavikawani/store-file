@@ -8,15 +8,15 @@ import Video from './Components/Video';
 function App() {
   return (
     <>
-    <div>
+    <div className='body'>
+    <div className='App'>
     <File />
     <div className='flex'>
-     <Video/>
-   
+    <Video/>
     <Recorder />
     </div>
     </div>
-   
+    </div>
     </>
   );
 }

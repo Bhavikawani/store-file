@@ -1,6 +1,8 @@
 .App {
   font-family: sans-serif;
-  text-align: right;
+  /* text-align: right; */
+  margin: 0 20px;
+  padding-top: 30px;
 }
 .videoRecordBody {
   width: 100%;
@@ -21,4 +23,10 @@
 
 .flex{
   display: flex;
+  /* margin-top: 50px; */
+  justify-content: space-around;
+}
+
+.body{
+  background-color: black;
 }
